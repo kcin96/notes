@@ -29,7 +29,7 @@ ax.set_ylabel("Displacement s/m")
 ax.legend();
 
 {% endhighlight %}
-![Image 1]({{site.baseurl}}/assets/images/regularization-1.png)
+![Image 1]({{site.baseurl}}/assets/images/regularization/regularization-1.png)
 
 For our model, let $s_t$ be the true displacement data points that fits (1), $y_t$ the displacement results from our experiment (measured data). $y_t$ can be written as a linear combination of powers of time $y_t=w_0+w_1t+w_2t^2+...$, where $w_n$ are weights for each $t^n$ for $n=0,1,2...N$. If we define $\phi(t)$ as a vector function of $t$ s, $y_t$ can be written vectorially as $\boldsymbol{w}^T\phi(t)$. With our experiment, the weights are the parameters to be determined from our measured data. A good model will have $w_o\approx 0$, $w_1\approx 0$, $w_2\approx 0.5*9.81$ and all other weights = $0$. 
 
@@ -59,7 +59,7 @@ ax.view_init(elev=15, azim=20)
 
 
 {% endhighlight %}
-![Image 2]({{site.baseurl}}/assets/images/regularization-2.png)
+![Image 2]({{site.baseurl}}/assets/images/regularization/regularization-2.png)
 
 The contour lines for various SSE values (level sets) are plotted as coloured lines on the $w_1w_2$ plane.
 
@@ -112,7 +112,7 @@ ax.set_ylabel(r'$w_2$');
 ax.grid()
 {% endhighlight %}
 
-![Image 3]({{site.baseurl}}/assets/images/regularization-3.png)
+![Image 3]({{site.baseurl}}/assets/images/regularization/regularization-3.png)
 
 The internal area of each circle represents the set of $w_1,w_2$ that satisfies the constraint (inequality) $\boldsymbol{w}^T\boldsymbol{w}\le\eta$. 
 
@@ -186,11 +186,11 @@ plt.show()
 
 {% endhighlight %}
 
-![Image 4]({{site.baseurl}}/assets/images/regularization-4.png)\
+![Image 4]({{site.baseurl}}/assets/images/regularization/regularization-4.png)\
 
 The blue surface shows the unregularized error function. 
 
-![Image 5]({{site.baseurl}}/assets/images/regularization-5.png)
+![Image 5]({{site.baseurl}}/assets/images/regularization/regularization-5.png)
 
 Next, we superimpose the constraint curves on the unregularized error function contour plot as shown in the figure above. The coloured contour lines are the level sets for the unregularized error function while the dark blue circular plots are the constraint curves for $\eta = 4,16,36$. From the contour plot, we observe that
 1. The minimum point for the unregularized error function at approximately at (15,1).
@@ -302,7 +302,7 @@ ax.set_ylabel("f(x)")
 ax.legend();
 {% endhighlight %}
 
-![Image 6]({{site.baseurl}}/assets/images/regularization-6.png)
+![Image 6]({{site.baseurl}}/assets/images/regularization/regularization-6.png)
 
 From the above plot, the green line ($\lambda=5$) is closer to the actual line $f$ (blue) than the orange line ($\lambda=0$) which we are trying to learn. 
 
@@ -325,7 +325,7 @@ ax.grid()
 ax.legend();
 {% endhighlight %}
 
-![Image 7]({{site.baseurl}}/assets/images/regularization-7.png)
+![Image 7]({{site.baseurl}}/assets/images/regularization/regularization-7.png)
 
 Looking at the graph, in the range $-1 < w < 1$, for the L1 norm, the gradient is still a constant, whereas with the L2 norm, the gradient decreases with every step moving closer to zero. So when we do gradient descent, L1 will take a constant step forward in every iteration towards 0. With L2 norm, as the gradient decreases as we move to 0, each step size gets smaller and smaller with each iteration. The following table 
 compares the $w$ for 10 iterations of gradient descent for $f_{L1}(w)=|w|$, $f_{L2}(w)=w^2$ with step $s = 0.1$. 
@@ -378,7 +378,7 @@ ax.legend();
 
 {% endhighlight %}
 
-![Image 8]({{site.baseurl}}/assets/images/regularization-8.png)
+![Image 8]({{site.baseurl}}/assets/images/regularization/regularization-8.png)
 
 As the graph above indicates, the L1 norm has $w$ driven to 0 at iteration 10, whereas with L2, the closer we get to 0, the slower the decrease in $w$ as the step reduction gets smaller with each iteration.
 
