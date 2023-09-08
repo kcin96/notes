@@ -10,7 +10,7 @@ Let say we are doing a physics experiment to determine the gravitational acceler
 
 
 
-{% highlight ruby %}
+{% highlight python %}
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import axes3d
@@ -37,7 +37,7 @@ To determine the error $E_D$ between true data (target) and measured data, a com
 
 As a simple example, let $N=1, t=1, s_1=7, w_0=0, w_1\in\{-100...100\},w_2\in\{-100...100\}$. The code below plots the sum-of-squares error for all $w_1,w_2$ pairs between -100 and 100.
 
-{% highlight ruby %}
+{% highlight python %}
 from mpl_toolkits.mplot3d import axes3d
 
 # for simplicity, assume N=1, t=1, s_1=7, w_0=0
@@ -87,7 +87,7 @@ Let $\boldsymbol{w}$ be a weight vector consisting of 2 variables, $w_1, w_2$. H
 \begin{bmatrix}w_1 \\ w_2\end{bmatrix}=w_1^2+w_2^2 \end{equation}$$.
 The figure below shows a plot of $w_1$ vs $w_2$ with $\eta=1$ and $\eta=4$. 
 
-{% highlight ruby %}
+{% highlight python %}
 #set weight order
 q = 2
 
@@ -118,7 +118,7 @@ The internal area of each circle represents the set of $w_1,w_2$ that satisfies 
 
 To understand how the constraint function affects the weight parameters, let us illustrate with an example. Let say our target line is $y=6x + x^2$. 3 true $x$, $x^2$ points are $[4,16],[1,1],[7,49]$. And let say our measured data are $[2,7],[1,5],[6,10]$. The code below illustrates our example.
 
-{% highlight ruby %}
+{% highlight python %}
 # target line y=6x+x^2
 target = np.array([[4,16],[1,1],[7,49]])
 x = np.linspace(-10,20,100)
@@ -204,7 +204,7 @@ Now with these insights, let us return to (\ref{2}). While the lagrangian is sim
 ### Example: Regularization in action 
 Let us say that we are trying to fit a quadratic curve $f(x)=7+x+3x^2$. For simplicity, we are given only 6 $x$ points:$ -3, -1, 2, 3, 5, 7$. Let us model the data using a 4th order polynomial - $w_0+w_1x+w_1x^2+w_3x^3+w_4x^4 = \boldsymbol{w}^T\phi(x)$, where $\phi(x)=\begin{bmatrix}1 \\ x \\ x^2 \\ x^3 \\ x^4\end{bmatrix}$,  $\boldsymbol{w}=\begin{bmatrix}w_0 \\ w_1 \\ w_2 \\ w_3 \\ w_4\end{bmatrix}$. Let us set the regularization coefficient $\lambda = 5$ and initialize $\boldsymbol{w}=\begin{bmatrix}10 \\ 10 \\ 10 \\ 10 \\ 9\end{bmatrix}$. With these values, we can compute the loss function (\ref{2}).
 
-{% highlight ruby %}
+{% highlight python %}
 x = np.array([-3,-1,2,3,5,7])  #initialize x 
 w = np.array([10,10,10,10,9])  #initialize weight
 lamb = 5 #regularization coefficient
@@ -223,7 +223,7 @@ Number of samples: $N$
 
 Number of iterations: $100,000$
 
-{% highlight ruby %}
+{% highlight python %}
 # SGD to obtain weights
 alpha = 0.000001 #learning rate
 for iter in range(100000):
@@ -241,7 +241,7 @@ for iter in range(100000):
 
 
 Putting it all together
-{% highlight ruby %}
+{% highlight python %}
 # Example of regularization vs no regularization
 x = np.array([-3,-1,2,3,5,7])  #initialize x 
 w = np.array([10,10,10,10,9])  #initialize weights
@@ -289,7 +289,7 @@ We can see from the above table that regularization results in smaller coefficie
 
 Let us plot the graphs for the actual line, unregularized and regularized case.
 
-{% highlight ruby %}
+{% highlight python %}
 #Plotting $f=7+x+3x^2$, with lambda=0, lambda=5 
 x = np.linspace(-5,5,50)
 fig, ax = plt.subplots(figsize=(4, 4))
@@ -313,7 +313,7 @@ $$E_R(\boldsymbol{w})=\frac{1}{2}\sum_{n=1}^{N}(t_n-\boldsymbol{w}^T\phi(\boldsy
 
 The L1 regularizer tend to produce sparse solutions i.e. more coefficients are driven to zero. To see this, compare the quadratic function and absolute valued function.
 
-{% highlight ruby %}
+{% highlight python %}
 # Plotting the quadratic function and absolute valued function
 w = np.linspace(-2,2,51)
 fig, ax = plt.subplots(figsize=(4, 4))
@@ -339,7 +339,7 @@ compares the $w$ for 10 iterations of gradient descent for $f_{L1}(w)=|w|$, $f_{
 | | ... | ... |
 |10|$w = 0$ | $w = 0.1073741824$ |
 
-{% highlight ruby %}
+{% highlight python %}
 #Computing the w values for L1 & L2 
 def recursel1(w,s):
     return w - s
