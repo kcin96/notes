@@ -255,3 +255,32 @@
     }
   }
 }
+
+    /**
+    * Sidebar
+    */
+.post-sidebar > .post-content > #markdown-toc{
+    position: fixed;
+    left: 0px; 
+    margin-left: 5px; 
+    padding-left: 15px;
+    height: 60%;
+    width: 14%;
+    background-color: white;
+    overflow-y: auto;
+
+  
+}
+
+#markdown-toc::before {
+  content: "Contents";
+  font-weight: bold;
+}
+
+
+[aria-current]:not([aria-current="false"]) {
+  font-weight: bold;
+  border-left-style: solid;
+  border-left-color: rgb(0, 98, 255);
+  border-left-width: 2px;
+}

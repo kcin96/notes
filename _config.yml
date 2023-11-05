@@ -31,6 +31,10 @@ theme: minima
 plugins:
   - jekyll-feed
 
+kramdown:
+  auto_ids: true
+
+  
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to
