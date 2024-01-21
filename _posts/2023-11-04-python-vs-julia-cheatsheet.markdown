@@ -417,6 +417,128 @@ array([2,4,35,3543,3,54])
 </tr>
 </table>
 
+### Array - Slicing
+<table>
+<tr>
+<th></th>
+<th>Python</th>
+<th>Julia</th>
+</tr>
+<tr>
+<td>Code</td>
+<td>
+{% highlight python %}
+[1, 5, 6, 7][1:4]
+{% endhighlight %}
+</td>
+<td>
+{% highlight julia %}
+[1 5 6 7][2:4]
+{% endhighlight %}
+</td>
+</tr>
+<tr>
+<td>Output</td>
+<td>
+{% highlight python %}
+[5, 6, 7]
+{% endhighlight %}
+</td>
+<td>
+{% highlight julia %}
+3-element Vector{Int64}:
+ 5
+ 6
+ 7
+{% endhighlight %}
+</td>
+</tr>
+<tr>
+<td>Code</td>
+<td>
+{% highlight python %}
+#slice index [start:stop:step]
+np.array(range(1,6))[0::2]
+{% endhighlight %}
+</td>
+<td>
+{% highlight julia %}
+#slice index [start:step:stop]
+Array(1:5)[1:2:end]
+{% endhighlight %}
+</td>
+</tr>
+<tr>
+<td>Output</td>
+<td>
+{% highlight python %}
+array([1, 3, 5])
+{% endhighlight %}
+</td>
+<td>
+{% highlight julia %}
+3-element Vector{Int64}:
+ 1
+ 3
+ 5
+{% endhighlight %}
+</td>
+</tr>
+<tr>
+<td>Code</td>
+<td>
+{% highlight python %}
+np.array(range(1,6))[-1]
+{% endhighlight %}
+</td>
+<td>
+{% highlight julia %}
+Array(1:5)[end]
+{% endhighlight %}
+</td>
+</tr>
+<tr>
+<td>Output</td>
+<td>
+{% highlight python %}
+5
+{% endhighlight %}
+</td>
+<td>
+{% highlight julia %}
+ 5
+{% endhighlight %}
+</td>
+</tr>
+<tr>
+<td>Code</td>
+<td>
+{% highlight python %}
+np.array(range(1,7))[1:-1:2]
+{% endhighlight %}
+</td>
+<td>
+{% highlight julia %}
+Array(1:6)[2:2:end-1]
+{% endhighlight %}
+</td>
+</tr>
+<tr>
+<td>Output</td>
+<td>
+{% highlight python %}
+array([2, 4])
+{% endhighlight %}
+</td>
+<td>
+{% highlight julia %}
+ 2-element Vector{Int64}:
+ 2
+ 4
+{% endhighlight %}
+</td>
+</tr>
+</table>
 
 ## Matrices
 <table>
@@ -563,6 +685,44 @@ array([[16, 19],
 </tr>
 </table>
 
+### Broadcasting
+<table>
+<tr>
+<th></th>
+<th>Python</th>
+<th>Julia</th>
+</tr>
+<tr>
+<td>Code</td>
+<td>
+{% highlight python %}
+import numpy as np
+np.array([[1,2,3],[3,4,5]])-np.array([6,7,8])
+{% endhighlight %}
+</td>
+<td>
+{% highlight julia %}
+[1 2 3; 3 4 5] .- [6 7 8]
+{% endhighlight %}
+</td>
+</tr>
+<tr>
+<td>Output</td>
+<td>
+{% highlight python %}
+array([[-5, -5, -5],
+       [-3, -3, -3]])
+{% endhighlight %}
+</td>
+<td>
+{% highlight julia %}
+2×3 Matrix{Int64}:
+ -5  -5  -5
+ -3  -3  -3
+{% endhighlight %}
+</td>
+</tr>
+</table>
 
 ## Dictionaries 
 <table>
@@ -1011,6 +1171,49 @@ end
 </tr>
 </table>
 
+## List comprehension 
+<table>
+<tr>
+<th></th>
+<th>Python</th>
+<th>Julia</th>
+</tr>
+<tr>
+<td>Code</td>
+<td>
+{% highlight python %}
+ X = ['a','b','c']
+ Y = range(0,3)
+[(x,y) for x in X for y in Y]
+{% endhighlight %}
+</td>
+<td>
+{% highlight julia %}
+X = ['a','b','c']
+Y = 1:3
+[(x,y) for x in X, y in Y]
+{% endhighlight %}
+</td>
+</tr>
+<tr>
+<td>Output</td>
+<td>
+{% highlight python %}
+[('a', 0), ('a', 1), ('a', 2), 
+('b', 0), ('b', 1), ('b', 2), 
+('c', 0), ('c', 1), ('c', 2)]
+{% endhighlight %}
+</td>
+<td>
+{% highlight julia %}
+3×3 Matrix{Tuple{Char, Int64}}:
+ ('a', 1)  ('a', 2)  ('a', 3)
+ ('b', 1)  ('b', 2)  ('b', 3)
+ ('c', 1)  ('c', 2)  ('c', 3)
+{% endhighlight %}
+</td>
+</tr>
+</table>
 
 ## Exceptions
 <table>
@@ -1323,6 +1526,36 @@ end
 1a
 2b
 3c
+{% endhighlight %}
+</td>
+</tr>
+</table>
+
+## url requests
+<table>
+<tr>
+<th></th>
+<th>Python</th>
+<th>Julia</th>
+</tr>
+<tr>
+<td>Code</td>
+<td>
+{% highlight python %}
+import requests
+#pings web page
+requests.get("http://www.google.com")
+#prints page html to output
+requests.get("http://www.google.com").text
+{% endhighlight %}
+</td>
+<td>
+{% highlight julia %}
+using Downloads
+#pings web page
+Downloads.request("www.google.com")
+#prints page html to output
+Downloads.download("www.google.com",stdout)
 {% endhighlight %}
 </td>
 </tr>
