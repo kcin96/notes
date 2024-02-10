@@ -540,6 +540,55 @@ array([2, 4])
 </tr>
 </table>
 
+### Array - Reshape
+<table>
+<tr>
+<th></th>
+<th>Python</th>
+<th>Julia</th>
+</tr>
+<tr>
+<td>Code</td>
+<td>
+{% highlight python %}
+x = np.array([1,2,3]) #1d array,
+                      # shape: (3,)
+x = x.reshape(-1,1) #3x1 2d array, 
+                    #shape: (3,1)
+x
+{% endhighlight %}
+</td>
+<td>
+{% highlight julia %}
+x = [1,2,3]   #3 element Vector,
+              #shape: (3,)
+x = reshape(x,(:,1))  #3x1 Matrix,
+                      #shape: (3,1)
+x
+{% endhighlight %}
+</td>
+</tr>
+<tr>
+<td>Output</td>
+<td>
+{% highlight python %}
+array([[1],
+       [2],
+       [3]])
+{% endhighlight %}
+</td>
+<td>
+{% highlight julia %}
+3×1 Matrix{Int64}:
+ 1
+ 2
+ 3
+{% endhighlight %}
+</td>
+</tr>
+</table>
+
+
 ## Matrices
 <table>
 <tr>
