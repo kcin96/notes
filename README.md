@@ -1,4 +1,4 @@
-# notes
+# Notes
 Welcome to my notes page! 
 
 The contents are a random assortment of

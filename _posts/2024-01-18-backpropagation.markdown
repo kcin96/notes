@@ -8,10 +8,10 @@ categories: ML
 * toc
 {:toc}
 
-# Overview
+## Overview
 This section explores backpropagating attention components (Query, Keys, Value, Softmax) individually. 
 
-# Neural network recap
+## Neural network recap
 <svg width="1000" height="250">
 
 
@@ -153,7 +153,7 @@ z_{1} \\ z_{2} \\ z_{3} \\ z_{4}
 \end{bmatrix}\\
 \end{aligned}$$
 
-# Multidimensional input
+## Multidimensional input
 <svg width="1000" height="300">
 
 <line x1="200" y1="50" x2="255" y2="50" style="stroke:black;stroke-width:2" />
@@ -559,7 +559,7 @@ $$\begin{aligned}
 \end{aligned}$$
 where sumcols means summing the columns.
 
-# Values, V
+## Values, V
 <svg width="800" height="300">
 
 <text x="0" y="57" fill="black" font-size="15">α1</text>
@@ -1030,7 +1030,7 @@ println("z:",FeedForward(V,V_bias,x,y,α))
 {% endhighlight %}
 
 
-# Query, Q
+## Query, Q
 <svg width="1000" height="550">
 
 
@@ -1484,7 +1484,7 @@ println("Q:",Q)
 println("e:",FeedForward(Q,k,x,y)[2])
 {% endhighlight %}
 
-# Keys, K
+## Keys, K
 <svg width="1000" height="550">
 
 
@@ -2055,7 +2055,7 @@ println("K:",K)
 println("e:",FeedForward(K,q,x,y)[2])
 {% endhighlight %}
 
-# Softmax
+## Softmax
 <svg width="1000" height="200">
 
 <rect x="60" y="20" width="75" height="100" style="fill:none;stroke-width:3;stroke:rgb(0,0,0)"></rect>
@@ -2219,7 +2219,7 @@ $$\begin{aligned}
 
 The same steps can be applied to obtain the gradients for $e_2$.
 
-# References
+## References
 1. [http://neuralnetworksanddeeplearning.com/chap1.html](http://neuralnetworksanddeeplearning.com/chap1.html)
 2. [https://cs231n.github.io/optimization-2/](https://cs231n.github.io/optimization-2/)
 3. [https://web.stanford.edu/class/archive/cs/cs224n/cs224n.1234/slides/cs224n-2023-lecture08-transformers.pdf](https://web.stanford.edu/class/archive/cs/cs224n/cs224n.1234/slides/cs224n-2023-lecture08-transformers.pdf)

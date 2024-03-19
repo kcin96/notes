@@ -1,13 +1,16 @@
 ---
-layout: post
+layout: sidebar
 title:  "Why  mean squared error loss works poorly with softmax."
 date:   2023-12-29 21:16:00 +0100
 categories: ML 
 ---
 
+* toc
+{:toc}
+
 The softmax function is a popular function in the neural networks literature. To train networks with a softmax layer, it is almost always trained with cross entropy as the loss function. Networks with the softmax layer present is almost never seen to be trained using the mean squared error as the loss function. This section explores why that is the case by explaining why mean squared error loss works poorly with the softmax function.
 
-# Softmax function
+## Softmax function
 
 The definition of softmax function is as below.
 
@@ -25,7 +28,7 @@ $$\begin{aligned}
 \end{cases}
 \end{aligned}$$
 
-# Mean squared error loss + softmax
+## Mean squared error loss + softmax
 Let us assume that we have an arbitrary network with a few layers and a final softmax layer. We then decide to use the mean square error loss to train the network.
 We can write down the loss function as
 $$\begin{aligned}
@@ -87,7 +90,7 @@ if \ \sigma(x_2)\approx 1 \implies \sigma(x_1) \approx 0, \frac{\partial{L}}{\pa
 
 In both cases, the gradient vanishes and no matter what layers we have before the softmax layer, it doesn't matter as the gradient being passed on is 0. So we cannot backpropagate the MSE errors back through the softmax layer when the softmax outputs saturates at 0 or 1. Hence, training can be difficult with these cases as the network gets stuck and stops learning. 
 
-# Cross Entropy loss + softmax
+## Cross Entropy loss + softmax
 Now let us go through the same process as above but with the cross entropy loss. Cross entropy function is defined as
 $$\begin{aligned}
 L = -\sum_{i=1}^n {p_i}lnq_i \\
@@ -132,10 +135,10 @@ if \ \sigma(x_2)\approx 1, \frac{\partial{L}}{\partial{x_2}} \approx 1-y_2\\
 
 Unlike in the mean squared error case, we can see that the gradients $\frac{\partial{L}}{\partial{x_j}}$ do not disappear when the softmax values are saturated at 0 or 1. This is due to the fact that the derivative of the natural logarithm results in a denominator term that cancels out the softmax term in the $\frac{\partial{\sigma(x_i)}}{\partial{x_j}}$. 
 
-# Summary
+## Summary
 In summary, mean square error do not work well with the softmax function due to vanishing gradients as the softmax output saturates. This can also be extended to other loss functions such as the L1-norm where the derivatives of these functions do not cancel out the effect of the softmax (product of gradient terms). In contrast, with the cross entropy function, it has the property where it kind of 'cancel' out the softmax saturation values due to the presence of the denominator term in the gradient. 
 
-# References
+## References
 1. [http://www.deeplearningbook.org](http://www.deeplearningbook.org)
 2. [https://eli.thegreenplace.net/2016/the-softmax-function-and-its-derivative/](https://eli.thegreenplace.net/2016/the-softmax-function-and-its-derivative/)
 

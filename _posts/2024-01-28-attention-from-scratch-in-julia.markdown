@@ -8,11 +8,11 @@ categories: ML
 * toc
 {:toc}
 
-# Overview
+## Overview
 This post explores the attention mechanism by building it up from scratch and applying it to a crude and rudimentary sentiment analysis example.
 
 
-# Embeddings
+## Embeddings
 We start with a sentence. A sentence with $n$ words is essentially a sequence of words $w_1,w_2...w_n$ .
 To process them numerically, we need to map words into a vector representation i.e. $word\ w_i \to vector\ x_i$
 To do so, we can use pretrained word embeddings out there such as [GloVe](https://nlp.stanford.edu/pubs/glove.pdf). This is represented by 
@@ -80,7 +80,7 @@ julia> word_tokeniser("This is a sentence")
  {% endhighlight %}
 
 
-# Attention 
+## Attention 
 We have 3 learnable weight parameters - queries $\boldsymbol{Q}$, keys $\boldsymbol{K}$, values $\boldsymbol{V}$ each with dimensions $(d_q+1)x(d_q+1), (d_k+1)x(d_k+1),(d_v+1)x(d_v+1)$ respectively. Let $\boldsymbol{x}$ be a $(d_q+1)xn$ dimensional matrix Next apply a linear transformation of the embeddings $\boldsymbol{x}$ with all 3 weight matrices giving us $\boldsymbol{q},\boldsymbol{k},\boldsymbol{v}$. 
 $$\begin{equation}
 \boldsymbol{Q}\boldsymbol{x} = \boldsymbol{q}\\
@@ -184,7 +184,7 @@ The <b><i>AttentionWeights</i></b> function firsts computes the unnormalized cos
 
 Now we have our attention building block! For more detailed explanation for the forward and backpropagation steps for attention, please refer to this [post](https://kcin96.github.io/notes/ml/2024/01/18/backpropagation.html).
 
-# Minimal Architecture
+## Minimal Architecture
 To see attention in action, let us consider a minimal functional architecture with attention at the heart of it.
 
 <svg width="1000" height="250">>
@@ -251,7 +251,7 @@ To see attention in action, let us consider a minimal functional architecture wi
 
 The architecture consists of 4 intermediate layers - Attention layer, Feed forward layer, Pooling layer, Softmax layer. For the input, we pass in a concatenation of word embeddings and the positional embeddings. At the final output layer, we obtain the classification probabilities. For this example, let us assume that we are doing sentiment analysis for a sentence. The sentiment labels are one-hot vectors - positive $[0,0,1]$, negative $[1,0,0]$, neutral $[0,1,0]$. So when we pass in an input sentence through the above architecture, we get the probabilities of whether our input sentence is either positive, negative or neutral.    
 
-# Forward pass
+## Forward pass
 Let us now create a function <b><i>Forwardprop</i></b> for the foward pass through the above architecture. The function takes in a word embedding matrix $\boldsymbol{x}$, the Attention parameters $\boldsymbol{Q,Q_b,K,K_b,V,V_b}$ and the Feedforward parameters $\boldsymbol{W,b}$ as arguments.
 {% highlight julia %}
 function forwardprop(x,Q,Qb,K,Kb,V,Vb,W,b)
@@ -320,7 +320,7 @@ function forwardprop(x,Q,Qb,K,Kb,V,Vb,W,b)
 end
 {% endhighlight %}
 
-# Backwards pass
+## Backwards pass
 This section dives into the details of computing gradients required for backpropagation.
 #### Cross Entropy 
 As we have a softmax function at the last layer, a good loss function to use is the cross entropy loss, defined below. 
@@ -598,7 +598,7 @@ function backprop(x,y,
 end
 {% endhighlight %}
 
-# Sentiment data
+## Sentiment data
 For our crude sentiment example, let us create a small sentiment dataset with first column containing the sentiment and second column containing the text. The contents for this "small.csv" are
 
 {% highlight csv %}
@@ -669,7 +669,7 @@ end
 {% endhighlight %}
 
 
-# Training
+## Training
 For training, we have the below <b><i>train</i></b> function which
 * calls on <b><i>forwardprop</i></b> for the forward propagate step
 * computes the Cross Entropy Loss with <b><i>CrossEntropyLoss(p,y)</i></b>
@@ -748,7 +748,7 @@ To see the queries, keys, values being trained, we will deliberately not update 
 
 {% endhighlight %}
 
-# Results
+## Results
 We are interested to see the resulting attention weights after training. To help us visualize that, we first import the julia Plots package.
 
 {% highlight julia %}
@@ -807,7 +807,7 @@ evaluate_model("easy to move around")
 
 ![Image 5]({{site.baseurl}}/assets/images/attention-from-scratch/attentionweights5.svg)
 
-# Full Code
+## Full Code
 Putting it all together 
 {% highlight julia %}
 using CSV, DataFrames
@@ -1099,7 +1099,7 @@ evaluate_model("very sad as they both fail")
 
 And that is attention from scratch!
 
-# References
+## References
 1. [http://neuralnetworksanddeeplearning.com/chap1.html](http://neuralnetworksanddeeplearning.com/chap1.html)
 2. [https://cs231n.github.io/optimization-2/](https://cs231n.github.io/optimization-2/)
 3. [https://web.stanford.edu/class/archive/cs/cs224n/cs224n.1234/slides/cs224n-2023-lecture08-transformers.pdf](https://web.stanford.edu/class/archive/cs/cs224n/cs224n.1234/slides/cs224n-2023-lecture08-transformers.pdf)

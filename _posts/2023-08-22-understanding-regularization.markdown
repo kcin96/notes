@@ -1,9 +1,12 @@
 ---
-layout: post
+layout: sidebar
 title:  "Understanding Regularization"
 date:   2023-08-22 21:16:00 +0100
 categories: 
 ---
+
+* toc
+{:toc}
 
 ## Least Squares
 Let say we are doing a physics experiment to determine the gravitational acceleration $g$ by the falling ball experiment. Now from physics we know that the equation of motion that governs this experiment is $$\begin{equation}s=ut+\frac{1}{2}gt^2 \tag{1}\label{1}\end{equation}$$ In an ideal world, when we drop the ball from a particular height $s$ and measure the time $t$ it takes to travel $s$, we will find that the $t$ s fit the equation. In practice however, it could be that due to errors in the experiment (random/systematic/human reaction time), the data we obtain may not exactly conform to (\ref{1}). Nonetheless, it is possible that we would like to use our measured data and fit a line through them (build a model).

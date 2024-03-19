@@ -27,7 +27,7 @@
 
 .site-nav {
   float: right;
-  line-height: $base-line-height * $base-font-size * 2.25;
+  line-height: $base-line-height * $base-font-size * 0;
 
   .nav-trigger {
       display: none;
@@ -40,7 +40,8 @@
   .page-link {
     color: $text-color;
     line-height: $base-line-height;
-
+    border-radius: 7%;
+    border-color:dodgerblue;
     // Gaps between nav items, but not on the last one
     &:not(:last-child) {
       margin-right: 20px;

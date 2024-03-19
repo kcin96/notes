@@ -1,9 +1,12 @@
 ---
-layout: post
+layout: sidebar
 title:  "Discrete Cosine Transform - Part 1"
 date:   2023-09-07 21:16:00 +0100
 categories: Signal Processing 
 ---
+
+* toc
+{:toc}
 
 Recall the definition of even and odd functions: \begin{aligned}f(-x) = f(x) \ :even\ function \\\  f(-x) = -f(x)\ :odd\ function.\end{aligned} As $cos(-x)=cos(x), sin(-x)=-sin(x)$, the cosine function is even and the sine function is odd.  
 
@@ -26,7 +29,7 @@ The Type 1 periodic extension is obtained by mirroring $x_o[n]$ about $n=0$ and 
 1. It is even around 0, N-1, 2N-2... (In cos equivalent terms, 0, $\pi$, $2\pi$...). The red vertical dashed lines show even symmetry. 
 2. There is a DC bias. This suggests that with our Type 1 periodic extension, in addition to the cosine component, we have a constant bias in the signal. 
 
-# Definition of DCT-1 
+## Definition of DCT-1 
 $$\begin{aligned}X_{DCT-1}[k] = \sum_{n=0}^{N-1}\alpha[n] x[n]cos(\frac{\pi nk }{N-1}) \\
 for\ k=0...N-1 \\
 where \ \alpha[n]=\begin{cases}\frac{1}{2}\ for\ n=0,N-1 \\ 1\ for\ n=1...N-2 \end{cases}\end{aligned}$$
@@ -36,7 +39,7 @@ Even/Odd Property:
 - At n=0 & N-1, x[n] is even
 - At k=0 & N-1, X[k] is even
 
-# DFT of Type 1 periodic extension 
+## DFT of Type 1 periodic extension 
 For notation simplicity here, let $x[n]=x_o[n]$, mirrored $x_o[n] = x[-n]$ \\
 $$\begin{aligned}
 &Using\ the\ DFT\ definition: DFT\{x[n]\} = \sum_{n=0}^{N-1}x[n]e^{-j\omega k} \\
@@ -58,7 +61,7 @@ The Type 2 periodic extension is obtained by mirroring $x_o[n]$ about $n=-0.5$ a
 2. There is a DC bias. 
 
 
-# Definition of DCT-2 
+## Definition of DCT-2 
 $$\begin{aligned}X_{DCT-2}[k] =\sum_{n=0}^{N-1} x[n]cos(\frac{\pi k (n+\frac{1}{2}) }{N}) \\
 for\ k=0...N-1 \ \end{aligned}$$
 
@@ -69,7 +72,7 @@ Even/Odd Property:
 
 This is the most commonly used DCT definition and is also known as the DCT.
 
-# DFT of Type 2 periodic extension 
+## DFT of Type 2 periodic extension 
 For notation simplicity here, let $x[n]=x_o[n]$, mirrored $x_o[n] = x[-n-1]$ \\
 $$\begin{aligned}
 &Using\ the\ DFT\ definition: DFT\{x[n]\}=\sum_{n=0}^{N-1}x[n]e^{-j\omega k}\\
@@ -94,7 +97,7 @@ The Type 3 periodic extension is obtained by mirroring $x_o[n]$ about $n=0$ and 
 3. There is no DC bias. 
 
 
-# Definition of DCT-3 
+## Definition of DCT-3 
 $$\begin{aligned}X_{DCT-3}[k] =\sum_{n=0}^{N-1} \alpha[n] x[n]cos(\frac{\pi (k+\frac{1}{2})n }{N}) \\
 for\ k=0...N-1 \\
 where\ \alpha[n]=\begin{cases}\frac{1}{2}\ for\ n=0 \\ 1\ for\ n=1,...N-1\end{cases} \end{aligned}$$
@@ -109,12 +112,12 @@ The Type 4 periodic extension is obtained by mirroring $x_o[n]$ about $n=-0.5$ a
 3. There is no DC bias. 
 
 
-# Definition of DCT-4 
+## Definition of DCT-4 
 $$\begin{aligned}X_{DCT-4}[k]  =\sum_{n=0}^{N-1} x[n]cos(\frac{\pi (k+\frac{1}{2}) (n+\frac{1}{2}) }{N})\\
 for\ k=0...N-1\end{aligned}$$
 
 ## Inverse Discrete Cosine Transform
-# Inverse DCT 1
+## Inverse DCT 1
 To reconstruct $x[n]$ from $X_{DCT-1}[k]$ we can
 use the 2N-2 Inverse DFT formula and apply on $\text{(1)}$
 $$\begin{aligned}
@@ -133,7 +136,7 @@ $$\begin{aligned}
 IDCT-1 = \frac{2}{N-1}\sum_{k=0}^{N-1}X_{DCT-1}[k]cos(\frac{\pi nk }{N-1}) \\
 for\ k=0...N-1 \end{aligned}$$
 
-# Inverse DCT 2
+## Inverse DCT 2
 To reconstruct $x[n]$ from $X_{DCT-2}[k]$ we can
 use the 2N Inverse DFT formula and apply on $\text{(2)}$
 $$\begin{aligned}
@@ -152,5 +155,5 @@ $$\begin{aligned}
 IDCT-2 = \frac{2}{N}\sum_{k=0}^{N-1}X_{DCT-1}[k]cos(\frac{\pi k (n+\frac{1}{2})}{N})\\
 for\ k=0...N-1\end{aligned}$$
 
-# References
+## References
 1. Discrete-Time Signal Processing Third Edition Alan V. Oppenheim Ronald W. Schafer 

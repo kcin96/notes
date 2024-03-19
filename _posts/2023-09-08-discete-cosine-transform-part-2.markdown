@@ -1,12 +1,16 @@
 ---
-layout: post
+layout: sidebar
 title:  "Discrete Cosine Transform - Part 2"
 date:   2023-09-08 21:16:00 +0100
 categories: Signal Processing 
 ---
 
+* toc
+{:toc}
+
 This section explores the DCT-2 and its application to image compression.
 
+## 1-Dimensional DCT-2 
 We begin with the cosine basis function.
 
 $$\begin{aligned}
@@ -302,6 +306,6 @@ plt.imshow(reconstruct_im, vmin=0, vmax=255, cmap='gray');
 
 The image above shows our reconstructed image, which has degraded quality compared to original image (due to discarded high frequency coefficients), however majority of the image content (cropped out word "Hi") has been retained. 
 
-# References
+## References
 1. [https://users.cs.cf.ac.uk/Dave.Marshall/Multimedia/node231.html](https://users.cs.cf.ac.uk/Dave.Marshall/Multimedia/node231.html)
 2. Discrete-Time Signal Processing Third Edition Alan V. Oppenheim Ronald W. Schafer 
